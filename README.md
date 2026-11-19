@@ -4,10 +4,12 @@ Desafio do Curso da DIO: Santander - Cibersegurança do Zero a prática, o qual 
 - Descobrindo o alvo:  
   
 1. ifconfig para descobrir a máscara da rede  
-   ´´´bash ifconfig´´´
+   ´´´bash
+   ifconfig
+   ´´´  
    -> inet 192.168.0.105  netmask 255.255.255.0  
   
-2. uso da ferramenta nmap para descobrir os dispositivos na rede local, encontrando a maquina virtual do Metasploitable 2 e quais portas estão abertas  
+3. uso da ferramenta nmap para descobrir os dispositivos na rede local, encontrando a maquina virtual do Metasploitable 2 e quais portas estão abertas  
    [] nmap -v  
    -> Nmap scan report for 192.168.0.1  
 Host is up (0.0014s latency).  
