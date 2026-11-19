@@ -59,7 +59,7 @@ PORT     STATE SERVICE
 MAC (ocultado por privacidade) (Oracle VirtualBox virtual NIC)
 ```  
 
-- Com isso, o ip do alvo é 192.168.0.155 e sei que as portas para os ataques (21 - ftp) estão abertas  
+- Com isso, o ip do alvo é 192.168.0.155 e sei que as portas para os ataques (21 - ftp, 139 e 445 - Smb) estão abertas  
 
 ## Brute force em FTP com Medusa
    
