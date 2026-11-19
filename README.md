@@ -4,6 +4,7 @@ Desafio do Curso da DIO: Santander - Cibersegurança do Zero a prática, o qual 
 - Descobrindo o alvo:  
   
 1. ifconfig para descobrir a máscara da rede
+### input 
 ```bash
 ifconfig
 ```  
