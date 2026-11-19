@@ -2,7 +2,7 @@
 Desafio do Curso da DIO: Santander - Cibersegurança do Zero a prática, o qual envolve invadir, na mesma rede, o ambiente Metasploitable 2 por meio de ataques simulados: brute force em FTP, automação de tentativas em formulário web (DVWA) e password spraying em SMB com enumeração de usuários.
 
 Guia:
-"->" para referir à resultados exibidos
+"->" para referir à resultados exibidos 
 "[]" para referir à comandos
 
 - Descobrindo o alvo:
