@@ -71,7 +71,7 @@ medusa -h (ip alvo) -U (arquivo com usuários) -P (arquivo com senhas) -M (proto
 ```
 
 ## 2. Rodando o comando, o aplicativo tentará usar cada combinação usuario-senha para encontrar a correta
-```bash
+bash
 medusa -h 192.168.0.155 -U [users.txt](./users.txt). -P [pass.txt](./pass.txt). -M ftp -t 6
-```  
+ 
 
