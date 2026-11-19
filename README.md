@@ -87,6 +87,6 @@ ftp 192.168.0.155
 - o usuário e senha são pedidos e inseridos, estabelecendo conexão e expondo a máquinas à perigos como exposição de dados sensíveis, execução remota de código, interceptação de tráfego e adulteração ou destruição de arquivos
 
 ### Remediação
-• Substituir o protocolo: Desativar o FTP tradicional e migrar o serviço para SFTP (SSH File Transfer Protocol) ou FTPS (FTP sobre SSL/TLS), garantindo que toda a comunicação seja criptografada.
-• Desabilitar acesso anônimo: Configurar o servidor (ex: vsftpd, ProFTPD) para bloquear logins anônimos.
-• Princípio do menor privilégio: Restringir os usuários autenticados apenas aos seus diretórios específicos (chroot jail) e remover permissões de escrita onde não forem estritamente necessárias.
+• Substituir o protocolo: Desativar o FTP tradicional e migrar o serviço para SFTP (SSH File Transfer Protocol) ou FTPS (FTP sobre SSL/TLS), garantindo que toda a comunicação seja criptografada.  
+• Desabilitar acesso anônimo: Configurar o servidor (ex: vsftpd, ProFTPD) para bloquear logins anônimos.  
+• Princípio do menor privilégio: Restringir os usuários autenticados apenas aos seus diretórios específicos (chroot jail) e remover permissões de escrita onde não forem estritamente necessárias.  
