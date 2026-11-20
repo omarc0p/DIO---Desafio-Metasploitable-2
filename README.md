@@ -172,4 +172,4 @@ Desabilitar protocolos obsoletos (SMB1) — forçar o uso de versões mais recen
 - Habilitar logging e auditoria — registrar tentativas de conexão e enumeração para detectar atividades suspeitas.
 - Desabilitar serviços legados desnecessários — como telnetd, que transmite credenciais em texto claro, reduzindo a superfície de ataque geral do sistema.
 
-- Fim do Desafio
+Fim do Desafio
