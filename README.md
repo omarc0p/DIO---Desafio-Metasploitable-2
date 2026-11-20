@@ -112,4 +112,17 @@ observado:
 ```bash
 [80][http-post-form] host: 192.168.0.155   login: admin   password: password
 ```
-- se tem usuário e senha para logar
+- agora com usuário e senha é possivel logar
+
+### Remediação
+- Rate limiting: Limitar o número de envios ou tentativas de login por IP, usuário ou sessão em um intervalo de tempo.
+- Bloqueio de IP ou WAF: Bloquear temporariamente IPs suspeitos após falhas repetidas ou use um Web Application Firewall (WAF) para filtrar tráfego automatizado.
+- CAPTCHA: Dificulta bot nets e scripts automatizados.
+- Tokens por sessão/formulário: Gerar tokens únicos no servidor para validar envios e dificultar repetições automatizadas
+- MFA (Autenticação Multifator): Exigir um segundo fator (aplicativo autenticador, token ou chave física) para que uma senha descoberta não baste.
+
+## Password Spraying em SMB com enum4linux
+
+SMB (Server Message Block) é um protocolo de comunicação de rede usado para compartilhar o acesso a arquivos, impressoras, portas seriais e outros recursos entre dispositivos em uma rede local (LAN) ou remota.
+
+
