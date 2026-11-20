@@ -1,5 +1,5 @@
 # DIO---Desafio-Metasploitable-2
-Desafio do Curso da DIO: Santander - Cibersegurança do Zero a prática, o qual envolve invadir, na mesma rede, o ambiente Metasploitable 2 por meio de ataques simulados: brute force em FTP, automação de tentativas em formulário web (DVWA) e password spraying em SMB com enumeração de usuários.
+Desafio do Curso da DIO: Santander - Cibersegurança do Zero a prática, o qual envolve invadir, na rede local, o ambiente Metasploitable 2 por meio de ataques simulados: brute force em FTP, automação de tentativas em formulário web (DVWA) e password spraying em SMB com enumeração de usuários.
 
 O Metasploitable 2 é um ambiente criado com vulnerabilidades de forma proposital a fim de estudos
 
