@@ -146,4 +146,5 @@ input
 smbclient -L //192.168.0.155 -U msfadmin
 ```
 
-então crio o arquivo
+então crio o arquivo [user.txt](/user.txt) com os usuários do 
+
