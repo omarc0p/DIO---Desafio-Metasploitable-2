@@ -1,6 +1,8 @@
 # DIO---Desafio-Metasploitable-2
 Desafio do Curso da DIO: Santander - Cibersegurança do Zero a prática, o qual envolve invadir, na mesma rede, o ambiente Metasploitable 2 por meio de ataques simulados: brute force em FTP, automação de tentativas em formulário web (DVWA) e password spraying em SMB com enumeração de usuários.
 
+O Metasploitable 2 é um ambiente criado com vulnerabilidades de forma proposital a fim de estudos
+
 ## Descobrindo o alvo:  
   
 ### 1. ifconfig para descobrir a máscara da rede  
@@ -121,8 +123,27 @@ observado:
 - Tokens por sessão/formulário: Gerar tokens únicos no servidor para validar envios e dificultar repetições automatizadas
 - MFA (Autenticação Multifator): Exigir um segundo fator (aplicativo autenticador, token ou chave física) para que uma senha descoberta não baste.
 
-## Password Spraying em SMB com enum4linux
+## Password Spraying em SMB com enum4linux e Medusa
 
-SMB (Server Message Block) é um protocolo de comunicação de rede usado para compartilhar o acesso a arquivos, impressoras, portas seriais e outros recursos entre dispositivos em uma rede local (LAN) ou remota.
+- SMB (Server Message Block) é um protocolo de comunicação de rede usado para compartilhar o acesso a arquivos, impressoras, portas seriais e outros recursos entre dispositivos em uma rede local (LAN) ou remota.
 
+- O enum4linux é uma ferramenta de linha de comando para Linux usada em testes de invasão (pentest) e auditorias de segurança para enumerar informações de sistemas Windows e servidores Samba via protocolos SMB e RPC
 
+- Um servidor Samba é um software gratuito e de código aberto que permite que sistemas Linux ou Unix compartilhem arquivos, impressoras e recursos de rede com computadores Windows (e outros sistemas operacionais)
+
+Usando então a ferramenta com a senha previamente obtida com o Medusa e armazenando o resultado:
+input
+```bash
+enum4linux -a 192.168.0.155 | tee enum4_out.txt
+```
+ao observar o arquivo com less ``enum_out.txt``, é possivel visualizar diversas informações, algumas sendo:
+- usuários do sistema
+- sistema operacional
+
+### Acessando o serviço SMB
+input
+```bash
+smbclient -L //192.168.0.155 -U msfadmin
+```
+
+então crio o arquivo
